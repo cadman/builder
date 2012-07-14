@@ -3,6 +3,13 @@
     <!-- Default Library Version Build -->
     <property name="yui.version" value="3"/>
     <property name="yui.variable" value="Y"/>
+
+    <loadfile property="version" srcfile="${srcdir}/src/version.txt">
+        <filterchain>
+            <striplinebreaks/>
+        </filterchain>
+    </loadfile>
+
     <property name="component.logger.regex" value="^.*?(?:logger|Y.log).*?(?:;|\).*;|(?:\r?\n.*?)*?\).*;).*;?.*?\r?\n" />
 
     <dirname property="bootstrap.basedir" file="${ant.file.YuiDefaultProperties}"/>

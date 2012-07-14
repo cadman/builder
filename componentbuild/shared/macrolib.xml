@@ -295,6 +295,7 @@
                     <filter token="LANG_MODULE" value="lang/${@{module}@{lang}_fullname}" />
                     <filter token="STRINGS" value="${@{module}@{lang}-strs-loaded}" />
                     <filter token="YUIVAR" value="${yui.variable}" />
+                    <filter token="VERSION" value="${version}" />
                     <filter token="MODULE" value="@{module}" />
                     <filter token="LANG_DETAILS" value="${@{module}@{lang}_details}" />
                 </filterset>
@@ -324,6 +325,7 @@
                 <filterset>
                     <filter token="CODE" value="${@{module}-@{file}-code}" />
                     <filter token="YUIVAR" value="${yui.variable}" />
+                    <filter token="VERSION" value="${version}" />
                     <filter token="MODULE" value="@{module}" />
                     <filter token="DETAILS" value="${@{module}-details}" />
                 </filterset>
@@ -352,6 +354,7 @@
                 <filterset>
                     <filter token="CODE" value="${@{module}-@{file}-code}"/>
                     <filter token="YUIVAR" value="${yui.variable}" />
+                    <filter token="VERSION" value="${version}" />
                     <filter token="MODULE" value="@{module}"/>
                     <filter token="DETAILS" value="${@{module}-details}"/>
                 </filterset>
@@ -391,6 +394,7 @@
                         <filterset>
                             <filter token="CODE" value="${@{module}-@{lang}-code}"/>
                             <filter token="YUIVAR" value="${yui.variable}" />
+                            <filter token="VERSION" value="${version}" />
                             <filter token="MODULE" value="lang/@{module}_@{lang}"/>
                             <filter token="DETAILS" value=", ${@{module}-@{lang}-details}"/>
                         </filterset>
@@ -418,6 +422,7 @@
                 <filterset>
                     <filter token="CODE" value="${@{module}--code}"/>
                     <filter token="YUIVAR" value="${yui.variable}" />
+                    <filter token="VERSION" value="${version}" />
                     <filter token="MODULE" value="lang/@{module}"/>
                     <filter token="DETAILS" value=", ${@{module}--details}"/>
                 </filterset>
