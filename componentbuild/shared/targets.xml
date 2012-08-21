@@ -62,20 +62,6 @@
             <available file="${component.template.base}" type="dir" />
             <then>
                 <echo level="verbose">Precompiling templates for ${component} </echo>
-                <fail>
-                    <condition>
-                        <not><resourcecontains resource="${component.basedir}/build.properties" substring="compiled-templates.js"/></not>
-                    </condition>
-Compiled templates not included in jsfiles!
-
-ERROR:
-The component ${component} uses templates, but
-'${compiled-templates.file}' is not listed in the
-'component.jsfiles' entry of 'build.properties'.
-
-Please, add it to the file:
-${component.basedir}/build.properties
-                </fail>
         
                 <compilehandlebars>
                     <sourcefiles>
