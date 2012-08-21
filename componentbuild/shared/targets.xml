@@ -131,8 +131,22 @@ ${component.basedir}/build.properties
 
     <target name="build" depends="handlebars" />
 
+    <target name="build-coverage" unless="coverage.skip">
+        <echo level="info">Creating coverage file for: ${component.builddir}/${component.basefilename}.js</echo>
+        <yuicoverage src="${component.builddir}/${component.basefilename}.js" dest="${component.builddir}/${component.basefilename}-coverage.js" />
+        <move file="${component.builddir}/${component.basefilename}-coverage.js" tofile="${component.builddir}/${component.basefilename}-coverage.js.tmp" />
+
+        <move file="${component.builddir}/${component.basefilename}-coverage.js.tmp" tofile="${component.builddir}/${component.basefilename}-coverage.js">
+            <filterchain>
+                <tokenfilter>
+                    <replacestring from="${component.builddir}" to="/build/${component.basefilename}"/>
+                </tokenfilter>
+            </filterchain>
+        </move>
+    </target>
+
     <!-- MIN -->
-    <target name="minify" description="Create component-min.js from component.js" unless="minify.skip">
+    <target name="minify" description="Create component-min.js from component.js" depends="build-coverage">
         <yuicompress src="${component.builddir}/${component.basefilename}.js" dest="${component.builddir}/${component.basefilename}-min.js" args="${yuicompressor.js.args.internal}" />
     	<if>
             <available file="${component.builddir}/lang" type="dir" />
@@ -156,7 +170,7 @@ ${component.basedir}/build.properties
                 <!-- Lint all files -->
                 <jslint>
                     <jsfiles>
-                        <fileset dir="${component.builddir}" includes="*.js" />
+                        <fileset dir="${component.builddir}" includes="*.js" excludes="*-coverage.js" />
                     </jsfiles>
                 </jslint>
             </then>
@@ -164,12 +178,7 @@ ${component.basedir}/build.properties
                 <!-- Only lint raw files -->
                 <jslint>
                     <jsfiles>
-                        <fileset dir="${component.builddir}" includes="*.js">
-                            <none>
-                                <filename name="*-debug.js"/>
-                                <filename name="*-min.js"/>
-                            </none>
-                        </fileset>
+                        <fileset dir="${component.builddir}" includes="*.js" excludes="*-coverage.js, *-debug.js, *-min.js" />
                     </jsfiles>
                 </jslint>
             </else>
